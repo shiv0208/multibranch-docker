@@ -23,7 +23,8 @@ pipeline {
         }
         stage ("Deploy") {
             steps {
-                sh 'docker run -itd --name movie-app -p 3333:80 shiv0208/paytm:movie'
+                sh 'docker rm -f movie-app || true'
+        sh 'docker run -itd --name movie-app -p 3333:80 shiv0208/paytm:movie'
             }
         }
     }
