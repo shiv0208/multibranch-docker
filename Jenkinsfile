@@ -23,7 +23,11 @@ pipeline {
         }
         stage ("Deploy") {
             steps {
-                sh 'docker run -itd --name bank-app -p 1111:80 shiv0208/paytm:bank'
+                sh '''
+        docker stop bank-app || true
+        docker rm bank-app || true
+        docker run -itd --name bank-app -p 1111:80 shiv0208/paytm:bank
+        '''
             }
         }
     }
